@@ -1,10 +1,15 @@
 package com.csdepartment.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +18,7 @@ public class Student {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int studentid;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -32,13 +37,35 @@ public class Student {
 	
 	@Column(name = "username", nullable = false)
 	private String username;
+	
+	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+	private List<Enrollment> enrollments;
+	
+	public Student() {}
+	
 
-	public int getId() {
-		return id;
+
+
+	public Student(String name, String card, String cnp, String address, String groupid, String username) {
+		super();
+		this.name = name;
+		this.card = card;
+		this.cnp = cnp;
+		this.address = address;
+		this.groupid = groupid;
+		this.username = username;
+		this.enrollments = new ArrayList<Enrollment>();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+
+
+
+	public int getStudentid() {
+		return studentid;
+	}
+
+	public void setStudentid(int studentid) {
+		this.studentid = studentid;
 	}
 
 	public String getName() {
@@ -88,4 +115,13 @@ public class Student {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(List<Enrollment> enrollments) {
+		this.enrollments = enrollments;
+	}
+
 }
