@@ -41,10 +41,12 @@ public class Loader implements ApplicationListener<ContextRefreshedEvent>{
      		// initialize MongoDB if empty
      		
      		if(reportService.getAllReports().size() == 0)
+     		{
      		
      		reportService.insert(new Report("Ana", "Mr Joldos", "Maths, DSD", "System Theory", "1.02.2018", "16.05.2018"));
      		reportService.insert(new Report("Crina", "Mr Popescu", "Logic Design", "Graphics, Image Processing", "1.02.2018", "16.05.2018"));
      		reportService.insert(new Report("Dorel", "Mr Gorgan", "OOP, Distributed Systems", "Algebra", "1.02.2018", "16.05.2018"));
+     		}
      		
      		
      	    // retrieve from MongoDB
