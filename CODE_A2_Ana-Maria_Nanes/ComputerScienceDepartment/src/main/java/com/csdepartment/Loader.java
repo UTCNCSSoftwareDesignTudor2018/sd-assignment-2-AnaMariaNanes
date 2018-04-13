@@ -5,10 +5,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import com.csdepartment.entities.Customer;
 import com.csdepartment.entities.Report;
 import com.csdepartment.entities.Student;
-import com.csdepartment.repositories.CustomerRepository;
 import com.csdepartment.services.ReportService;
 import com.csdepartment.services.StudentService;
 
@@ -18,20 +16,12 @@ public class Loader implements ApplicationListener<ContextRefreshedEvent>{
     @Inject 
     StudentService studentService;
     
-    @Inject 
-    CustomerRepository customerRepository;
-    
     @Inject
     ReportService reportService;
     
     
 	public void onApplicationEvent(ContextRefreshedEvent event) {
         	
-             
-            for (Customer customer : customerRepository.findAll()) {
-     			System.out.println(customer.getFirstName() + " " + customer.getLastName());
-     		}
-     		System.out.println();
      		
      		Student student = studentService.getStudentById(1);
      		System.out.println(student.getName());
