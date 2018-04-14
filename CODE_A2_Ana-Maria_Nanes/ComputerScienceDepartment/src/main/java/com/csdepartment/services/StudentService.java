@@ -31,5 +31,32 @@ public class StudentService {
 		return studentRepository.findByName(name);
 	}
 	
-
+	public Student getStudentByUsername(String username)
+	{
+		return studentRepository.findByUsername(username);
+	}
+	
+	public Student insert(Student student)
+	{
+		return studentRepository.save(student);
+	}
+	
+	
+	public void delete(Student student)
+	{
+		studentRepository.delete(student);
+	}
+	
+	public void deleteByStudentId(int id)
+	{
+		studentRepository.deleteByStudentid(id);
+	}
+	
+	public void update(Student oneStudent)
+	{
+		Student foundStudent = studentRepository.findByStudentid(oneStudent.getStudentid());
+		foundStudent = oneStudent;
+		studentRepository.save(foundStudent);
+	}
+	
 }

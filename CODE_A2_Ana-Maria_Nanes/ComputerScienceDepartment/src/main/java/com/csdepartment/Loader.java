@@ -5,46 +5,40 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import com.csdepartment.entities.Course;
-import com.csdepartment.entities.Enrollment;
-import com.csdepartment.entities.Grade;
-import com.csdepartment.entities.Report;
-import com.csdepartment.entities.Student;
-import com.csdepartment.entities.Teacher;
-import com.csdepartment.services.CourseService;
-import com.csdepartment.services.EnrollmentService;
-import com.csdepartment.services.GradeService;
-import com.csdepartment.services.ReportService;
-import com.csdepartment.services.StudentService;
-import com.csdepartment.services.TeacherService;
+import com.csdepartment.entities.*;
+import com.csdepartment.mvc.controller.HomePageController;
+import com.csdepartment.mvc.model.*;
+import com.csdepartment.mvc.view.HomePageView;
+import com.csdepartment.services.*;
+
 
 @Component
 public class Loader implements ApplicationListener<ContextRefreshedEvent>{
     
-    
-    @Inject
-    CourseService courseService;
-    
-    @Inject
-    EnrollmentService enrollmentService;
-    
-    @Inject 
-    GradeService gradeService;
-    
+
     @Inject
     ReportService reportService;
     
     @Inject 
     StudentService studentService;
     
+    @Inject 
+    HomePageView homePage;
+    
     @Inject
-    TeacherService teacherService;
+    StudentModel studentModel;
+    
+    @Inject
+    TeacherModel teacherModel;
+    
+    @Inject 
+    HomePageController homePageController;
     
     
 	public void onApplicationEvent(ContextRefreshedEvent event) {
         	
-     		
-     		// initialize MongoDB if empty    		
+	
+		    // initialize MongoDB if empty 		
      		if(reportService.getAllReports().size() == 0)
      		{
      		
@@ -58,36 +52,16 @@ public class Loader implements ApplicationListener<ContextRefreshedEvent>{
     			System.out.println(report.getStudentName());
     		}
     		System.out.println();
+    	
     		
-    		//students
+    		//students		
     		for (Student student: studentService.getAllStudents()) {
     			System.out.println(student.getName());
     		}
     		System.out.println();
+    	    	 		
+    		homePageController.init(homePage, studentModel, teacherModel);
     		
-    		// teachers
-    		for (Teacher teacher: teacherService.getAllTeachers()) {
-    			System.out.println(teacher.getName());
-    		}
-    		System.out.println();
-    		
-    		// courses
-    		for (Course course : courseService.getAllCourses()) {
-    			System.out.println(course.getName());
-    		}
-    		System.out.println();
-    		
-    		
-    		// enrollments
-    		for (Enrollment enrollment: enrollmentService.getAllEnrollments()) {
-    			System.out.println(enrollment.getEnrollmentid());
-    		}
-    		System.out.println();   		
-    		
-    		// grades
-    		for (Grade grade: gradeService.getAllGrades()) {
-    			System.out.println(grade.getGrade() + "  enrollmentID:   " + grade.getEnrollment().getEnrollmentid());
-    		}
-    		System.out.println();  
-        }
+    		  		 		 		
+	}
 }

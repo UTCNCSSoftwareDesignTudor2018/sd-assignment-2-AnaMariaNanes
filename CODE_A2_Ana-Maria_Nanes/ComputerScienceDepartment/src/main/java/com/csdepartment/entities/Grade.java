@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "grades")
 public class Grade {
@@ -21,6 +24,7 @@ public class Grade {
 	private float grade;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "enrollmentid")
 	private Enrollment enrollment;
 	

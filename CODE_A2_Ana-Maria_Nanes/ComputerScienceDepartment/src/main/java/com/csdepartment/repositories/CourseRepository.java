@@ -10,8 +10,10 @@ import com.csdepartment.entities.Teacher;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	public List<Course> findAll();
+	public Course findByCourseid(int id);
 	public Course findByName(String name);
 	public Course findByTeacher(Teacher teacher);
-	public void deleteAll();
 	public Course save(Course course);
+	public void delete(Course course);
+	public void deleteByCourseid(int id);
 }

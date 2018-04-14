@@ -13,6 +13,7 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer>
 	public Enrollment findByEnrollmentid(int id);
 	public List<Enrollment> findByCourse(Course course);
 	public List<Enrollment> findByStudent(Student student);
-	public void deleteAll();
 	public Enrollment save(Enrollment enrollment);
+	public void delete(Enrollment enrollment);
+	public void deleteByEnrollmentid(int id);
 }

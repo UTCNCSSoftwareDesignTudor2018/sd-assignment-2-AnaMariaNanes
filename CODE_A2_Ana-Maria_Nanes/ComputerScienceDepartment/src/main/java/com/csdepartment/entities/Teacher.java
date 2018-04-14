@@ -3,6 +3,7 @@ package com.csdepartment.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,16 +27,20 @@ public class Teacher {
 	@Column(name = "username", nullable = false)
 	private String username;
 	
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER)
+	@Column(name = "password", nullable = false)
+	private String password;
+	
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
 	private List<Course> courses;
 	
 	public Teacher() {}
 	
 
-	public Teacher(String name, String username) {
+	public Teacher(String name, String username,String password) {
 		super();
 		this.name = name;
 		this.username = username;
+		this.password = password;
 		this.courses = new ArrayList<Course>();
 	}
 
@@ -72,7 +77,15 @@ public class Teacher {
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
-	
-	
-	
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+		
 }

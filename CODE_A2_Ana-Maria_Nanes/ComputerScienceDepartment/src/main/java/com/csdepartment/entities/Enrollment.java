@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "enrollments")
@@ -33,14 +37,16 @@ public class Enrollment {
 	private Date endDate;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "courseid")
 	private Course course;
 	
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "studentid")
 	private Student student;
 	
-	@OneToMany(mappedBy = "enrollment", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "enrollment", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Grade> grades;
 	
 	public Enrollment() {}

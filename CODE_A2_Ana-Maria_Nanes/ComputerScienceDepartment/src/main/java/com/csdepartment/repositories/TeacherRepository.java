@@ -11,6 +11,8 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 	public List<Teacher> findAll();
 	public Teacher findByTeacherid(int id);
 	public Teacher findByName(String name);
-	public void deleteAll();
+	public Teacher findByUsername(String username);
+	public void delete(Teacher teacher);
+	public void deleteByTeacherid(int id);
 	public Teacher save(Teacher student);
 }

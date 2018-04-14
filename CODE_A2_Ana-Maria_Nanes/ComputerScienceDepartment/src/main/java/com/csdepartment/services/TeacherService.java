@@ -17,6 +17,7 @@ public class TeacherService {
 	
 	public List<Teacher> getAllTeachers()
 	{
+	
 		return teacherRepository.findAll();
 	}
 	
@@ -30,5 +31,31 @@ public class TeacherService {
 		return teacherRepository.findByName(name);
 	}
 	
-
+	public Teacher getTeacherByUsername(String username)
+	{
+		return teacherRepository.findByUsername(username);
+	}
+	
+	public void delete(Teacher teacher)
+	{
+		teacherRepository.delete(teacher);
+	}
+	
+	public void deleteById(int id)
+	{
+		teacherRepository.deleteByTeacherid(id);
+	}
+	
+	public Teacher insert(Teacher teacher)
+	{
+		return teacherRepository.save(teacher);
+	}
+	
+	public void update(Teacher teacher)
+	{
+		Teacher foundTeacher = teacherRepository.findByTeacherid(teacher.getTeacherid());
+		foundTeacher = teacher;
+		teacherRepository.save(teacher);
+	}
+	
 }

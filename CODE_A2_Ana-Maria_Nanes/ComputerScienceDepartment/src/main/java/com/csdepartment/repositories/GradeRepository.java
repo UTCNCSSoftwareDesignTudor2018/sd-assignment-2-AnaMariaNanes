@@ -13,6 +13,7 @@ public interface GradeRepository extends JpaRepository<Grade, Integer> {
 	public List<Grade> findAll();
     public Grade findByGradeid(int id);
     public List<Grade> findByEnrollment(Enrollment enrollment);
-	public void deleteAll();
 	public Grade save(Grade grade);
+	public void delete(Grade grade);
+	public void deleteByGradeid(int id);
 }

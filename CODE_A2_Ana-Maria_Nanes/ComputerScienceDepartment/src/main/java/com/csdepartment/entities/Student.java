@@ -3,6 +3,7 @@ package com.csdepartment.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,15 +39,16 @@ public class Student {
 	@Column(name = "username", nullable = false)
 	private String username;
 	
-	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+	@Column(name = "password", nullable = false)
+	private String password;
+	
+	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Enrollment> enrollments;
 	
 	public Student() {}
 	
 
-
-
-	public Student(String name, String card, String cnp, String address, String groupid, String username) {
+	public Student(String name, String card, String cnp, String address, String groupid, String username,String password) {
 		super();
 		this.name = name;
 		this.card = card;
@@ -54,10 +56,9 @@ public class Student {
 		this.address = address;
 		this.groupid = groupid;
 		this.username = username;
+		this.password = password;
 		this.enrollments = new ArrayList<Enrollment>();
 	}
-
-
 
 
 	public int getStudentid() {
@@ -123,5 +124,17 @@ public class Student {
 	public void setEnrollments(List<Enrollment> enrollments) {
 		this.enrollments = enrollments;
 	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
 
 }

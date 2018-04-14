@@ -25,9 +25,14 @@ public class ReportService {
 		return reportRepository.findByStudentName(studentName);
 	}
 	
-	public void removeAll()
+	public void deleteAll()
 	{
 		reportRepository.deleteAll();
+	}
+	
+	public void deleteByReportId(int id)
+	{
+		reportRepository.deleteById(id);
 	}
 	
 	public Report insert(Report rep)
