@@ -8,10 +8,14 @@ import com.csdepartment.entities.Report;
 
 public interface ReportRepository extends MongoRepository<Report, String> {
 
-    public List<Report> findByStudentName(String name);
-    public List<Report> findAll();
-    public void deleteAll();
-    public void deleteById(int id);
-    public Report save(Report report);
-    
+	public List<Report> findByStudentName(String name);
+
+	public List<Report> findAll();
+
+	public void deleteAll();
+
+	public void deleteById(int id);
+
+	public Report save(Report report);
+
 }

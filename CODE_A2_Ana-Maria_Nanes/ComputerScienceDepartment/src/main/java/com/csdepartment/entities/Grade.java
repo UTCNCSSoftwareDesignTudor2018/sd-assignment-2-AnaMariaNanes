@@ -15,28 +15,27 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "grades")
 public class Grade {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int gradeid;
-	
+
 	@Column(name = "grade", nullable = false)
 	private float grade;
-	
+
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "enrollmentid")
+	@JoinColumn(name = "enrollmentid")
 	private Enrollment enrollment;
-	
-	public Grade() { }
 
-	
+	public Grade() {
+	}
+
 	public Grade(Enrollment enrollment, float grade) {
 		super();
 		this.enrollment = enrollment;
 		this.grade = grade;
 	}
-
 
 	public int getGradeid() {
 		return gradeid;

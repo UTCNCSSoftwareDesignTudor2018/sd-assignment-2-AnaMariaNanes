@@ -21,29 +21,30 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "courses")
 public class Course {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int courseid;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "credits", nullable = false)
 	private int credits;
-	
+
 	@Column(name = "room", nullable = false)
 	private String room;
-	
+
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "teacherid")
+	@JoinColumn(name = "teacherid")
 	private Teacher teacher;
-	
+
 	@OneToMany(mappedBy = "course", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Enrollment> enrollments;
-	
-	public Course() {}
+
+	public Course() {
+	}
 
 	public Course(String name, int credits, String room, Teacher teacher) {
 		super();
@@ -86,7 +87,6 @@ public class Course {
 		this.credits = credits;
 	}
 
-
 	public String getRoom() {
 		return room;
 	}
@@ -102,7 +102,5 @@ public class Course {
 	public void setEnrollments(List<Enrollment> enrollments) {
 		this.enrollments = enrollments;
 	}
-	
-	
 
 }

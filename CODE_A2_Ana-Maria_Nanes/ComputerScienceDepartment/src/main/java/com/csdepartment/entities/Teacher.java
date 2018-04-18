@@ -16,27 +16,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "teachers")
 public class Teacher {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int teacherid;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "username", nullable = false)
 	private String username;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
-	@OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
-	private List<Course> courses;
-	
-	public Teacher() {}
-	
 
-	public Teacher(String name, String username,String password) {
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<Course> courses;
+
+	public Teacher() {
+	}
+
+	public Teacher(String name, String username, String password) {
 		super();
 		this.name = name;
 		this.username = username;
@@ -68,24 +68,20 @@ public class Teacher {
 		this.username = username;
 	}
 
-
 	public List<Course> getCourses() {
 		return courses;
 	}
-
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-		
+
 }

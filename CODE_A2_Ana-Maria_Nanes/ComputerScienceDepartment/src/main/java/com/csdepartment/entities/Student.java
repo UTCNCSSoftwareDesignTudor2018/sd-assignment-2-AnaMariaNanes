@@ -16,39 +16,40 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "students")
 public class Student {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentid;
-	
+
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Column(name = "card", nullable = false, length = 5)
 	private String card;
-	
+
 	@Column(name = "cnp", nullable = false, length = 10)
 	private String cnp;
-	
+
 	@Column(name = "address", nullable = false)
 	private String address;
-	
+
 	@Column(name = "groupid", nullable = false, length = 5)
 	private String groupid;
-	
+
 	@Column(name = "username", nullable = false)
 	private String username;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Enrollment> enrollments;
-	
-	public Student() {}
-	
 
-	public Student(String name, String card, String cnp, String address, String groupid, String username,String password) {
+	public Student() {
+	}
+
+	public Student(String name, String card, String cnp, String address, String groupid, String username,
+			String password) {
 		super();
 		this.name = name;
 		this.card = card;
@@ -59,7 +60,6 @@ public class Student {
 		this.password = password;
 		this.enrollments = new ArrayList<Enrollment>();
 	}
-
 
 	public int getStudentid() {
 		return studentid;
@@ -125,16 +125,12 @@ public class Student {
 		this.enrollments = enrollments;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }

@@ -16,46 +16,44 @@ public class EnrollmentService {
 
 	@Inject
 	EnrollmentRepository enrollmentRepository;
-	
-	public List<Enrollment> getAllEnrollments()
-	{
+
+	public List<Enrollment> getAllEnrollments() {
 		return enrollmentRepository.findAll();
 	}
-	
-	public Enrollment getByEnrollmentid(int id)
-	{
+
+	public Enrollment getByEnrollmentid(int id) {
 		return enrollmentRepository.findByEnrollmentid(id);
 	}
-	
-	public List<Enrollment> getByCourse(Course course)
-	{
+
+	public List<Enrollment> getByCourse(Course course) {
 		return enrollmentRepository.findByCourse(course);
 	}
-	
-	public List<Enrollment> getByStudent(Student student)
-	{
+
+	public List<Enrollment> getByStudent(Student student) {
 		return enrollmentRepository.findByStudent(student);
 	}
-	
-	public Enrollment insert(Enrollment enrollment)
-	{
+
+	public Enrollment insert(Enrollment enrollment) {
 		return enrollmentRepository.save(enrollment);
 	}
-	
-	public void delete(Enrollment enrollment)
-	{
+
+	public void delete(Enrollment enrollment) {
 		enrollmentRepository.delete(enrollment);
 	}
-	
-	public void deleteByEnrollmentid(int id)
-	{
+
+	public void deleteByEnrollmentid(int id) {
 		enrollmentRepository.deleteByEnrollmentid(id);
 	}
-	
-	public void update(Enrollment enrollment)
-	{
-		Enrollment foundEnrollment =  enrollmentRepository.findByEnrollmentid(enrollment.getEnrollmentid());
+
+	public void update(Enrollment enrollment) {
+		Enrollment foundEnrollment = enrollmentRepository.findByEnrollmentid(enrollment.getEnrollmentid());
 		foundEnrollment = enrollment;
 		enrollmentRepository.save(foundEnrollment);
+	}
+
+	public Enrollment getByStudentAndCourse(Student student, Course course) {
+		List<Enrollment> enrolls = student.getEnrollments();
+		enrolls.stream().filter(e -> e.getCourse().getCourseid() == course.getCourseid());
+		return enrolls.get(0);
 	}
 }

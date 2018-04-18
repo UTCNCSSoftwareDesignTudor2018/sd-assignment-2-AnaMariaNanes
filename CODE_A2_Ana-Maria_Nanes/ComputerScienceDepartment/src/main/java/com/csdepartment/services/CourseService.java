@@ -12,51 +12,43 @@ import com.csdepartment.repositories.CourseRepository;
 
 @Service()
 public class CourseService {
-	
+
 	@Inject
 	CourseRepository courseRepository;
-	
-	public List<Course> getAllCourses()
-	{
+
+	public List<Course> getAllCourses() {
 		return courseRepository.findAll();
 	}
-	
-	public Course getByCourseid(int id)
-	{
+
+	public Course getByCourseid(int id) {
 		return courseRepository.findByCourseid(id);
 	}
-	
-	public Course getByName(String name)
-	{
+
+	public Course getByName(String name) {
 		return courseRepository.findByName(name);
 	}
-	
-	public Course getByTeacher(Teacher teacher)
-	{
+
+	public Course getByTeacher(Teacher teacher) {
 		return courseRepository.findByTeacher(teacher);
 	}
-	
-	public Course insert(Course course)
-	{
+
+	public Course insert(Course course) {
 		return courseRepository.save(course);
 	}
-	
-	public void delete(Course course)
-	{
+
+	public void delete(Course course) {
 		courseRepository.delete(course);
 	}
-	
-	public void deleteByCourseId(int id)
-	{
+
+	public void deleteByCourseId(int id) {
 		courseRepository.deleteByCourseid(id);
-		
+
 	}
-	
-	public void update(Course course)
-	{
+
+	public void update(Course course) {
 		Course foundCourse = courseRepository.findByCourseid(course.getCourseid());
 		foundCourse = course;
 		courseRepository.save(foundCourse);
 	}
-	
+
 }

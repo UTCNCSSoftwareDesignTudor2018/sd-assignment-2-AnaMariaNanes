@@ -48,5 +48,9 @@ public class SpringBootPostgreSQLApplication {
         return new StudentValidator();
     }
 	
-
+	@Bean
+    public EnrollmentValidator createEnrollmentValidator() {
+        return new EnrollmentValidator();
+    }
+	
 }
